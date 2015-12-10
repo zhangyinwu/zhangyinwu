@@ -37,7 +37,7 @@ public class BinaryTree {
 	 public void midOrder(TreeNode node){  
 	  if(node!=null){  
 	   this.midOrder(node.getLeftchild());  
-	   System.out.println(node.getValue());  
+	   System.out.print(node.getValue());  
 	   this.midOrder(node.getRightchild());  
 	  }  
 	 }  
@@ -46,7 +46,7 @@ public class BinaryTree {
 	  
 	 public void frontOrder(TreeNode node){  
 	  if(node !=null){  
-	   System.out.println(node.getValue());  
+	   System.out.print(node.getValue());  
 	   frontOrder(node.getLeftchild());  
 	   frontOrder(node.getRightchild());  
 	  }  
@@ -57,7 +57,7 @@ public class BinaryTree {
 	  if(node != null){  
 	   this.lastOrder(node.getLeftchild());  
 	   this.lastOrder(node.getRightchild());  
-	   System.out.println(node.getValue());  
+	   System.out.print(node.getValue());  
 	  }  
 	 }  
 	 
