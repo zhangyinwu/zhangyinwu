@@ -5,10 +5,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.ByteBuffer;
 
 public class File2buf {
-	public byte[] getBytes(String filePath) {
+	public byte[] getBytes(String filePath) throws Exception {
 		byte[] buffer = null;
 		FileInputStream fis = null;
 		ByteArrayOutputStream bos = null;
@@ -17,36 +16,32 @@ public class File2buf {
 			if (file.exists() && file.isFile()) {
 				fis = new FileInputStream(file); // 创建一个文件的读取流
 				long length = fis.available();
-				System.out.println(length);
 				bos = new ByteArrayOutputStream((int) length); // 获取缓冲内的数据,转换成数组
-				ByteBuffer byteBuffer = ByteBuffer.allocate(4096);
-				byte[] b = byteBuffer.array();
+				byte[] b = new byte[4096];
 				int n;
 				while ((n = fis.read(b)) != -1) { // 将文件file读取出来,存放在数组b中
 					bos.write(b, 0, n);
 				}
-
 				buffer = bos.toByteArray(); // 得到结果数组
-			} else if (!file.exists()) {
-				System.out.println("文件不存在！");
-			} else if (file.isDirectory()) {
-				System.out.println("这是一个文件夹，请选择一个文件！");
-			}
+			} else if (!file.exists()||file.isDirectory()) {
+				throw new Exception("文件不存在或者是文件夹");
+			} 
 		} catch (FileNotFoundException e) {
-			// e.printStackTrace();
 		} catch (IOException e) {
-			// e.printStackTrace();
 		} finally {
 			try {
-				fis.close();
+				if (fis !=null) {
+					fis.close();
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
-				bos.close();
+				if (bos !=null) {
+					bos.close();
+				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -54,12 +49,20 @@ public class File2buf {
 		return buffer; // 返回结果数组
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args)  {
 		File2buf file2buf = new File2buf();
-		byte[] b = file2buf
-				.getBytes("E:/QQPinyin/4.7.2065.400/QQDownload/Extract.dll");
-		for (int i = 0; i < b.length; i++) {
+		byte[] b;
+		try {
+			b = file2buf.getBytes("E:/test1/text1.txt");
+			for (int i = 0; i < b.length; i++) {
 			System.out.println(b[i]);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		
+		
 		}
+		//System.out.println(b.length/1024);
 	}
 }
