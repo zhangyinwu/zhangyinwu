@@ -1,12 +1,11 @@
+package tree;
 import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import tree1.TreeNode;
-import tree1.TreeNode.Node;
-
+import tree.TreeNode.Node;
 
 public class Test3 {
 	@Test
@@ -15,7 +14,7 @@ public class Test3 {
 		Node node=treeNode.createTreeNode("abd##e##cf##g##");
 		String result1 =treeNode.getNode(node, 3);
 		String result2 =treeNode.getNode(node, 2);
-		//String result3 =treeNode.getNode(node, 5);
+	//	String result3 =treeNode.getNode(node, 5);
 		//用例1
 		assertEquals("defg", result1);
 		//用例2
@@ -30,6 +29,11 @@ public class Test3 {
 		String result4 = treeNode.getNode(node2, 3);
 		//用例4
 		assertEquals("d", result4);
+		treeNode.reIndex();
+		Node node3 =treeNode.createTreeNode("ab#d##ce###");
+		String result5 = treeNode.getNode(node3, 3);
+		//用例5
+		assertEquals("de", result5);
 		
 	}
 

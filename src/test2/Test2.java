@@ -1,11 +1,10 @@
+package test2;
 import static org.junit.Assert.*;
 
 import javax.swing.text.AttributeSet.FontAttribute;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import test2.File2buf;
 
 /**
  * 

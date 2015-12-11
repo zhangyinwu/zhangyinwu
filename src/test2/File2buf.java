@@ -6,7 +6,19 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/**
+ * 该类用于将文件转化为字节数组
+ * @author: John
+ * @Class: File2buf
+ * @date: 2015年12月11日
+ */
 public class File2buf {
+	/**
+	 * 传入一个文件filepath,将其转化为字节数组
+	 * @author:John
+	 * @return:byte[]
+	 * @date: 2015年12月11日
+	 */
 	public byte[] getBytes(String filePath) throws Exception {
 		byte[] buffer = null;
 		FileInputStream fis = null;
